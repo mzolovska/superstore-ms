@@ -1,0 +1,10 @@
+insert into products(product_id, status, product_type, price, country, product_name, amount) values ('bac312bc-bac1-21ba-31245abed45n',  'AVAILABLE', 'BAKERY', '25.2',  'Mexico', 'Buns', 'Five');
+insert into products(product_id, status, product_type, price, country, product_name, amount) values ('bac312bc-bac1-21ba-31245abss45b', 'AVAILABLE', 'DAIRY', '12.5',  'Canada', 'Milk', 'Ten');
+insert into products(product_id, status, product_type, price, country, product_name, amount) values ('ecd312bc-efc1-45ba-675hurgu7gi4', 'AVAILABLE', 'BAKERY', '15.5', 'USA', 'Bagel', 'Six');
+insert into products(product_id, status, product_type, price, country, product_name, amount) values ('afd312bc-abc1-21ba-hoih8yyf3994',  'AVAILABLE', 'FRUIT', '8.75', 'Italy', 'Apple', 'Twenty');
+insert into products(product_id, status, product_type, price, country, product_name, amount) values ('dce312bc-dce1-21dc-mkldf98947ig',  'AVAILABLE', 'VEGETABLE', '2.99', 'France', 'Tomato', 'Twenty-four');
+insert into products(product_id, status, product_type, price, country, product_name, amount) values ('gfh312bc-gfh1-21fg-2674tgrhjf8g',  'SOLD', 'MEAT', '19.99', 'Australia', 'Steak', 'Three');
+insert into products(product_id, status, product_type, price, country, product_name, amount) values ('gfh312bc-gfh1-21fg-2674tgrhjf8g',  'AVAILABLE', 'VEGETABLE', '5.49', 'Brazil', 'Cucumber', 'Fifteen');
+insert into products(product_id, status, product_type, price, country, product_name, amount) values ('jkl312bc-jkl1-21jk-tyguhrijokl5',  'AVAILABLE', 'DAIRY', '3.75', 'Germany', 'Ice Cream', 'Eight');
+insert into products(product_id, status, product_type, price, country, product_name, amount) values ('mno312bc-mno1-21mn-tyuikmn4b3ut', 'SOLD', 'FRUIT', '1.99', 'Japan', 'Chips', 'Thirty');
+insert into products(product_id, status, product_type, price, country, product_name, amount) values ('pqr312bc-pqr1-21pq-7893ikjnjhjh',  'AVAILABLE', 'MEAT', '4.5', 'India', 'Beef', 'Twenty');

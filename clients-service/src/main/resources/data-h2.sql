@@ -1,0 +1,10 @@
+insert into clients (client_id, first_name, last_name, purchase) values ('13526a90-506f-4981-a9da-06ba21fc610b', 'Ralina', 'Sussex', 'milk,bread');
+insert into clients (client_id, first_name, last_name, purchase) values ('cc9c2c7f-afc9-46fb-8119-17158e54d02f', 'Pen', 'Carruthers', 'oranges,apples');
+insert into clients (client_id, first_name, last_name, purchase) values ('fd7ce6d5-33f2-4c56-8ff2-9c997a18e2a1', 'Michael', 'Johnson', 'eggs,cheese');
+insert into clients (client_id, first_name, last_name, purchase) values ('e1c8a190-0fa8-4df4-95b6-c8b5f0a90ed4', 'Samantha', 'Smith', 'bread,juice');
+insert into clients (client_id, first_name, last_name, purchase) values ('c3029434-12f1-4f57-a4a9-2f1720be123f', 'Jonathan', 'Miller', 'cereal,milk');
+insert into clients (client_id, first_name, last_name, purchase) values ('b9e746bd-5baf-4f64-9a2f-9b6d672e1230', 'Emma', 'Davis', 'yogurt,granola');
+insert into clients (client_id, first_name, last_name, purchase) values ('ae2f4dcb-e9e0-498d-8cb8-89f67a123c32', 'Andrew', 'Wilson', 'bananas,oranges');
+insert into clients (client_id, first_name, last_name, purchase) values ('f4fe5912-36f2-4d3b-af2a-2e905c123b19', 'Olivia', 'Brown', 'potatoes,onions');
+insert into clients (client_id, first_name, last_name, purchase) values ('8e17e79b-c9cf-465a-bd10-5117b5123a9d', 'Matthew', 'Taylor', 'chicken,rice');
+insert into clients (client_id, first_name, last_name, purchase) values ('1f067543-5c8b-4597-9b6d-24b6a123d08c', 'Sophia', 'Martinez', 'pasta,sauce');

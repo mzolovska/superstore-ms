@@ -1,0 +1,13 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Context.puml
+
+title System Context Diagram for Superstore system
+
+Person(client, "Client", "A client of the Superstore")
+Person(employee, "Employee", "An employee of the Superstore")
+System(superstore, "Superstore", "Allows employees to sell products")
+
+Rel(employee, superstore, "Tracks the products and sales" , "Uses")
+Rel(client, superstore, "Buys the products" , "Uses")
+'SHOW_LEGEND()
+@enduml

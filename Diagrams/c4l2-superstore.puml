@@ -1,0 +1,58 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Container.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+
+!include FONTAWESOME/users.puml
+
+AddElementTag("microService", $shape=EightSidedShape(), $bgColor="CornflowerBlue", $fontColor="white", $legendText="micro service\neight sided")
+AddElementTag("storage", $shape=RoundedBoxShape(), $bgColor="lightSkyBlue", $fontColor="white")
+AddRelTag(aggregate_root, $lineColor="red")
+
+LAYOUT_TOP_DOWN()
+'LAYOUT_WITH_LEGEND()
+SHOW_PERSON_OUTLINE()
+'HIDE_STEREOTYPE()
+
+title Container Diagram for Superstore
+
+Person(employee, "Employee", "Employee of the Superstore", "person")
+System_Boundary(Store, "Superstore"){
+    Container(webapp, "Web Application", "JavaScript, React", "Delivers the static content and te products single page application")
+    Container(singlePageApp, "Single Page App", "JavaScript, React", "Provides the superstore functionality to employees via their browser")
+    Container(api_gateway, "API Gateway", "Java, Spring Boot", "Provides superstore functionality via JSON/REST HTTPS API.")
+
+    Container(sales_service, "Sales Service", "Java, Spring Boot", "Provides sales functionality using the aggregator pattern.", $tags = "microService")
+    Container(products_service, "Products Service", "Java, Spring Boot", "Provides products functionality via JSON/REST HTTPS API.", $tags = "microService")
+    Container(clients_service, "Clients Service", "Java, Spring Boot", "Provides clients functionality via JSON/REST HTTPS API.", $tags = "microService")
+    Container(employees_service, "Employees Service", "Java, Spring Boot", "Provides employees functionality via JSON/REST HTTPS API.", $tags = "microService")
+
+    ContainerDb(products_db, "Products Database", "Postgres", "Stores products information", $tags = "storage")
+    ContainerDb(clients_db, "Clients Database", "MySQL 5.5.x", "Stores clients information",$tags = "storage")
+    ContainerDb(employees_db, "Employees Database", "MySQL 5.5.x", "Stores employees information",$tags = "storage")
+    ContainerDb(sales_db, "Sales Database", "Mongo DB", "Stores sales information",$tags = "storage")
+
+    Rel(employee, webapp, "Visits superstore using", "HTTPS")
+    Rel_R(webapp, singlePageApp, "Delivers to the employee's browser", "HTTPS")
+    Rel(employee, singlePageApp, "Views products and tracks the sales", "HTTPS")
+    Rel(singlePageApp, api_gateway, "Makes API calls to", "JSON/REST/HTTPS")
+    Rel(api_gateway, clients_service, "Makes API calls to", "JSON/REST/HTTPS")
+    Rel(api_gateway, products_service, "Makes API calls to", "JSON/REST/HTTPS")
+    Rel(api_gateway, employees_service, "Makes API calls to", "JSON/REST/HTTPS")
+    Rel(api_gateway, sales_service, "Makes API calls to", "JSON/REST/HTTPS")
+
+    Rel(sales_service, products_service, "Makes API calls to", "JSON/REST/HTTPS", $tags = "aggregate_root")
+    Rel(sales_service, clients_service, "Makes API calls to", "JSON/REST/HTTPS", $tags = "aggregate_root")
+    Rel(sales_service, employees_service, "Makes API calls to", "JSON/REST/HTTPS", $tags = "aggregate_root")
+
+    Rel_D(clients_service, clients_db, "Reads from and writes to", "JDBC")
+    Rel_D(products_service, products_db, "Reads from and writes to", "JDBC")
+    Rel_D(employees_service, employees_db, "Reads from and writes to", "JDBC")
+    Rel_R(sales_service, sales_db, "Reads from and writes to", "Mongo")
+}
+
+
+
+
+@enduml

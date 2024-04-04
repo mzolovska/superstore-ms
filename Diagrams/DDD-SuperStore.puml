@@ -1,0 +1,137 @@
+@startuml
+hide circle
+top to bottom direction
+
+!define ENTITY(entityName) class entityName << Entity >>
+!define AGGREGATE(aggregateName) class aggregateName << Aggregate >>
+!define AGGREGATE_ROOT(aggregateRootName) class aggregateRootName << Aggregate Root >>
+!define AGGREGATE_ROOT_ENTITY(aggregateRootEntityName) class aggregateRootEntityName << Aggregate Root >> << Entity >>
+!define VALUE_OBJECT(valueObjectName) class valueObjectName << Value Object >>
+!pragma useVerticalIf on
+skinparam dpi 350
+skinparam packageStyle rectangle
+skinparam rectangle {
+    BackgroundColor #f7f4eb
+    BorderColor Black
+}
+
+rectangle "Super Store" as BoundedContextCarDealership #line.dashed {
+
+ Package "Products Management Sub-Domain" <<Rectangle>> #Lavender {
+
+        ENTITY(Products) #lightblue {
+            productName: String
+            amount: String
+            productType:String
+            productStatus:String
+        }
+
+        VALUE_OBJECT(ProductsIdentifier) #Bisque{
+           productId: String
+        }
+
+        VALUE_OBJECT(Price) #Bisque{
+           price: String
+        }
+
+
+        VALUE_OBJECT(Country) #Bisque{
+            country: String
+        }
+
+
+
+
+       Products --> ProductsIdentifier
+       Products o-- "1" Price
+       Products o-- "1" Country
+
+    }
+
+
+Package "Employee Sub-Domain" <<Rectangle>> #3399FF{
+        ENTITY(Employee) #lightblue{
+            firstName: String
+            lastName: String
+            email: String
+            salary: String
+            commissionRate: String
+            department: String
+        }
+        VALUE_OBJECT(EmployeeIdentifier) #Bisque{
+            salesPersonId: UUID
+        }
+        VALUE_OBJECT(EmployeeAddress) #Bisque{
+                street: String
+                city: String
+                province: String
+                country: String
+        }
+
+
+
+
+        Employee --> EmployeeIdentifier
+
+        Employee o--> "1" EmployeeAddress
+    }
+
+
+    Package "Clients Relationship Management Sub-Domain" <<Rectangle>> #FFCDD2{
+        AGGREGATE_ROOT_ENTITY(Client) #lightpink{
+            clientFirstName: String
+            clientLastName: String
+            purchase:String
+        }
+        VALUE_OBJECT(ClientIdentifier) #Bisque{
+            customerId: UUID
+        }
+
+
+
+        Client -u-> ClientIdentifier
+
+        Client o-> ProductsIdentifier
+        Client o-> EmployeeIdentifier
+
+
+    }
+
+
+   Package "Sales Sub-Domain" <<Rectangle>> #DFBDF4 {
+
+
+               AGGREGATE_ROOT_ENTITY(Sale) #lightPink {
+                   date: DateTime
+                   status: String
+               }
+
+
+               VALUE_OBJECT(SaleIdentifier) #Bisque{
+                   saleId: UUID
+               }
+
+
+               VALUE_OBJECT(Price) #Bisque{
+                   value: Decimal
+                   currency: Currency
+               }
+
+
+               Sale --> SaleIdentifier
+               Sale o-- "1" Price
+
+               Sale -u-> EmployeeIdentifier
+
+               Sale -u-> ClientIdentifier
+               Sale -u-> ProductsIdentifier
+
+
+           }
+
+
+
+
+}
+
+@enduml
